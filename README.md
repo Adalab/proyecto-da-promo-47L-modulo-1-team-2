@@ -19,3 +19,23 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 > **"El talento gana juegos, pero el trabajo en equipo y la inteligencia ganan campeonatos." – Michael Jordan**
 
 ¡Sigamos aprendiendo, creciendo y apoyándonos mutuamente en este emocionante camino! 🚀✨
+
+
+
+```python
+preguntas = {"Rusia":"Moscú", "Italia": "Roma", "España": "Madrid"}
+
+puntos = 0 
+
+for pais, capital in preguntas.items():
+    print(f"¿Cuál es la capital de {pais}?")
+    jugador = input("Tu respuesta: ")
+
+    if jugador.lower() == capital.lower():
+        print("Capital correcta")
+        puntos+=1
+
+    else: 
+        print("Incorrecto, respuesta correcta es: ",capital)
+print(f"Game over, ganaste {puntos} puntos")
+
