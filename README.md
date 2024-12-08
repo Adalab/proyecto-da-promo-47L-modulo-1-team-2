@@ -22,6 +22,7 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 
 
+```python
 preguntas = {"Rusia":"Moscú", "Italia": "Roma", "España": "Madrid"}
 
 puntos = 0 
