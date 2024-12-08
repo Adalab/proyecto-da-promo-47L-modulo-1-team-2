@@ -1,4 +1,5 @@
-# Grupo 2 - Módulo 1 - Promo L47
+# proyecto-da-promo-47L-modulo-1-team-2.
+# Grupo 2 - Promo L47
 
 ## **Integrantes del equipo**
 - **Elena Alique Baumann**  
