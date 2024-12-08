@@ -20,7 +20,8 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 ¡Sigamos aprendiendo, creciendo y apoyándonos mutuamente en este emocionante camino! 🚀✨
 
-''python
+
+
 preguntas = {"Rusia":"Moscú", "Italia": "Roma", "España": "Madrid"}
 
 puntos = 0 
@@ -36,5 +37,4 @@ for pais, capital in preguntas.items():
     else: 
         print("Incorrecto, respuesta correcta es: ",capital)
 print(f"Game over, ganaste {puntos} puntos")
-
 
