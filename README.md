@@ -51,7 +51,6 @@ print(f"Game over, ganaste {puntos} puntos")
 preguntas = {"Rusia": "Moscú", "Italia": "Roma", "España": "Madrid", "Lituania": "Vilna", "Rumania": "Bucarest"}
 puntos = 0
 
-# Crear un iterador de las preguntas
 iterador = iter(preguntas.items())
 
 while True:
