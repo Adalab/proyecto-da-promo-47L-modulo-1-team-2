@@ -24,51 +24,32 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 ```python
 
-# Juego Capitales Europeas con for con opcion salir
+capitales = [
+    ("Rusia", "Moscú"),
+    ( "Italia", "Roma"),
+    ("España", "Madrid"),
+    ( "Lituania", "Vilna"),
+    ("Rumania", "Bucarest")
+]
 
-preguntas = {"Rusia": "Moscú", "Italia": "Roma", "España": "Madrid", "Lituania": "Vilna", "Rumania":"Bucarest" }
 puntos = 0
+indice = 0
 
-for pais, capital in preguntas.items():
+
+while indice < len(capitales):
+    pais, capital = capitales[indice]
     print(f"¿Cuál es la capital de {pais}?")
-    jugador = input("Tu respuesta: ")
-
-    if jugador.lower() == "salida":
+    
+    respuesta = input("Tu respuesta (o escribe 'salir' para terminar): ")
+    
+    if respuesta.lower() == "salir":
         print("Saliste del juego.")
         break
-
-    if jugador.lower() == capital.lower():
-        print("Capital correcta")
+    if respuesta.lower() == capital.lower():
+        print("¡Correcto!")
         puntos += 1
     else:
-        print("Incorrecto, respuesta correcta es: ", capital)
-
-print(f"Game over, ganaste {puntos} puntos") 
-
-
-# Juego Capitales Europeas con while con opcion salir
-
-preguntas = {"Rusia": "Moscú", "Italia": "Roma", "España": "Madrid", "Lituania": "Vilna", "Rumania": "Bucarest"}
-puntos = 0
-
-iterador = iter(preguntas.items())
-
-while True:
-    try:
-        pais, capital = next(iterador)
-        print(f"¿Cuál es la capital de {pais}?")
-        jugador = input("Tu respuesta: ")
-
-        if jugador.lower() == "salida":
-            print("Saliste del juego.")
-            break
-
-        if jugador.lower() == capital.lower():
-            print("Capital correcta")
-            puntos += 1
-        else:
-            print("Incorrecto, respuesta correcta es: ", capital)
-    except StopIteration:
-        break
-
-print(f"Game over, ganaste {puntos} puntos")
+        print(f"Incorrecto, la respuesta correcta es: {capital}")
+    indice += 1
+    
+print(f"Juego terminado. Obtuviste {puntos} puntos.")
