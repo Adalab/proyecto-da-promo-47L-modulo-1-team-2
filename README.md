@@ -23,19 +23,53 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 
 ```python
-preguntas = {"Rusia":"Moscú", "Italia": "Roma", "España": "Madrid"}
 
-puntos = 0 
+# Juego Capitales Europeas con for con opcion salir
+
+preguntas = {"Rusia": "Moscú", "Italia": "Roma", "España": "Madrid", "Lituania": "Vilna", "Rumania":"Bucarest" }
+puntos = 0
 
 for pais, capital in preguntas.items():
     print(f"¿Cuál es la capital de {pais}?")
     jugador = input("Tu respuesta: ")
 
+    if jugador.lower() == "salida":
+        print("Saliste del juego.")
+        break
+
     if jugador.lower() == capital.lower():
         print("Capital correcta")
-        puntos+=1
+        puntos += 1
+    else:
+        print("Incorrecto, respuesta correcta es: ", capital)
 
-    else: 
-        print("Incorrecto, respuesta correcta es: ",capital)
+print(f"Game over, ganaste {puntos} puntos") 
+
+
+# Juego Capitales Europeas con while con opcion salir
+
+preguntas = {"Rusia": "Moscú", "Italia": "Roma", "España": "Madrid", "Lituania": "Vilna", "Rumania": "Bucarest"}
+puntos = 0
+
+# Crear un iterador de las preguntas
+iterador = iter(preguntas.items())
+
+while True:
+    try:
+        pais, capital = next(iterador)
+        print(f"¿Cuál es la capital de {pais}?")
+        jugador = input("Tu respuesta: ")
+
+        if jugador.lower() == "salida":
+            print("Saliste del juego.")
+            break
+
+        if jugador.lower() == capital.lower():
+            print("Capital correcta")
+            puntos += 1
+        else:
+            print("Incorrecto, respuesta correcta es: ", capital)
+    except StopIteration:
+        break
+
 print(f"Game over, ganaste {puntos} puntos")
-
