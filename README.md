@@ -24,6 +24,8 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 ```python
 
+#Juego Adivina Capitales Europeas
+
 capitales = [
     ("Rusia", "Moscú"),
     ( "Italia", "Roma"),
@@ -53,3 +55,109 @@ while indice < len(capitales):
     indice += 1
     
 print(f"Juego terminado. Obtuviste {puntos} puntos.")
+
+
+
+#Juego del ahorcado
+
+import random
+
+# Lista de palabras y dibujo de la horca
+lista_palabras = ["perro", "alcachofa", "ratón", "jarra", "anillo"]
+dibujo_horca = [
+    """
+      ------
+      |    |
+           |
+           |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+           |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+      |    |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|    |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|\\   |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|\\   |
+     /     |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|\\   |
+     / \\   |
+           |
+    =========
+    """
+]
+
+# Selección de palabra y configuración inicial
+palabra = random.choice(lista_palabras)
+tablero = ["_"] * len(palabra)
+intentos_fallidos = 0
+
+print("¡Bienvenido al Ahorcado!")
+print(dibujo_horca[intentos_fallidos])
+print(" ".join(tablero))
+
+# Juego principal
+while intentos_fallidos < len(dibujo_horca) - 1:
+    letra = input("Adivina una letra: ").lower()
+
+    if letra in palabra:
+        for i, l in enumerate(palabra):
+            if l == letra:
+                tablero[i] = letra
+        print("¡Correcto!")
+    else:
+        intentos_fallidos += 1
+        print("¡Fallaste!")
+
+    print(dibujo_horca[intentos_fallidos])
+    print(" ".join(tablero))
+
+    if "_" not in tablero:
+        print("¡Ganaste! La palabra era:", palabra)
+        break
+else:
+    print("¡Perdiste! La palabra era:", palabra)
+
