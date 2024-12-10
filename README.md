@@ -23,19 +23,141 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 
 ```python
-preguntas = {"Rusia":"Moscú", "Italia": "Roma", "España": "Madrid"}
 
-puntos = 0 
+#Juego Adivina Capitales Europeas
 
-for pais, capital in preguntas.items():
+capitales = [
+    ("Rusia", "Moscú"),
+    ( "Italia", "Roma"),
+    ("España", "Madrid"),
+    ( "Lituania", "Vilna"),
+    ("Rumania", "Bucarest")
+]
+
+puntos = 0
+indice = 0
+
+
+while indice < len(capitales):
+    pais, capital = capitales[indice]
     print(f"¿Cuál es la capital de {pais}?")
-    jugador = input("Tu respuesta: ")
+    
+    respuesta = input("Tu respuesta (o escribe 'salir' para terminar): ")
+    
+    if respuesta.lower() == "salir":
+        print("Saliste del juego.")
+        break
+    if respuesta.lower() == capital.lower():
+        print("¡Correcto!")
+        puntos += 1
+    else:
+        print(f"Incorrecto, la respuesta correcta es: {capital}")
+    indice += 1
+    
+print(f"Juego terminado. Obtuviste {puntos} puntos.")
 
-    if jugador.lower() == capital.lower():
-        print("Capital correcta")
-        puntos+=1
 
-    else: 
-        print("Incorrecto, respuesta correcta es: ",capital)
-print(f"Game over, ganaste {puntos} puntos")
+
+#Juego del ahorcado
+
+import random
+
+# Lista de palabras y dibujo de la horca
+lista_palabras = ["perro", "alcachofa", "ratón", "jarra", "anillo"]
+dibujo_horca = [
+    """
+      ------
+      |    |
+           |
+           |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+           |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+      |    |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|    |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|\\   |
+           |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|\\   |
+     /     |
+           |
+    =========
+    """,
+    """
+      ------
+      |    |
+      O    |
+     /|\\   |
+     / \\   |
+           |
+    =========
+    """
+]
+
+# Selección de palabra y configuración inicial
+palabra = random.choice(lista_palabras)
+tablero = ["_"] * len(palabra)
+intentos_fallidos = 0
+
+print("¡Bienvenido al Ahorcado!")
+print(dibujo_horca[intentos_fallidos])
+print(" ".join(tablero))
+
+# Juego principal
+while intentos_fallidos < len(dibujo_horca) - 1:
+    letra = input("Adivina una letra: ").lower()
+
+    if letra in palabra:
+        for i, l in enumerate(palabra):
+            if l == letra:
+                tablero[i] = letra
+        print("¡Correcto!")
+    else:
+        intentos_fallidos += 1
+        print("¡Fallaste!")
+
+    print(dibujo_horca[intentos_fallidos])
+    print(" ".join(tablero))
+
+    if "_" not in tablero:
+        print("¡Ganaste! La palabra era:", palabra)
+        break
+else:
+    print("¡Perdiste! La palabra era:", palabra)
 
