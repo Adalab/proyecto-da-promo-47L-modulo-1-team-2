@@ -172,27 +172,47 @@ else:
 
 import random
 
-def jugar():
-    opciones = ["piedra", "papel", "tijera"]
+import random
 
+# Configuración inicial
+puntos_jugador = 0
+puntos_computadora = 0
+puntos_objetivo = 3
+
+print("¡Bienvenido al juego Piedra, Papel y Tijera!")
+
+# Bucle principal del juego
+while puntos_jugador < puntos_objetivo and puntos_computadora < puntos_objetivo:
+    print(f"Puntos - Jugador: {puntos_jugador}, Computadora: {puntos_computadora}")
+
+    # Elección del jugador
+    opciones = ["piedra", "papel", "tijera"]
     jugador = input("Elige piedra, papel o tijera: ").lower()
     while jugador not in opciones:
         print("Opción no válida. Intenta de nuevo.")
         jugador = input("Elige piedra, papel o tijera: ").lower()
 
-    ordenador = random.choice(opciones)
+    # Elección de la computadora
+    computadora = random.choice(opciones)
 
     print(f"Tú elegiste: {jugador}")
-    print(f"El ordenador eligió: {ordenador}")
+    print(f"La computadora eligió: {computadora}")
 
-    if jugador == ordenador:
+    # Determinar el ganador
+    if jugador == computadora:
         print("¡Es un empate!")
-    elif (jugador == "piedra" and ordenador == "tijera") or \
-         (jugador == "papel" and ordenador == "piedra") or \
-         (jugador == "tijera" and ordenador == "papel"):
-        print("¡Ganaste!")
+    elif (jugador == "piedra" and computadora == "tijera") or \
+         (jugador == "tijera" and computadora == "papel") or \
+         (jugador == "papel" and computadora == "piedra"):
+        puntos_jugador += 1
+        print("¡Ganaste esta ronda!")
     else:
-        print("Perdiste. Intenta de nuevo.")
+        puntos_computadora += 1
+        print("La computadora ganó esta ronda.")
 
-# Llamar a la función para jugar esto nos lo explicaran mañana
-jugar()
+# Resultado final
+if puntos_jugador == puntos_objetivo:
+    print("¡Felicidades! Ganaste el juego.")
+else:
+    print("La computadora ganó el juego. Mejor suerte la próxima vez.")
+
