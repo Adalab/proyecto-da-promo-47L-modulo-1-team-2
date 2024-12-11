@@ -183,13 +183,13 @@ def jugar():
     ordenador = random.choice(opciones)
 
     print(f"Tú elegiste: {jugador}")
-    print(f"La computadora eligió: {computadora}")
+    print(f"El ordenador eligió: {ordenador}")
 
-    if jugador == computadora:
+    if jugador == ordenador:
         print("¡Es un empate!")
-    elif (jugador == "piedra" and computadora == "tijera") or \
-         (jugador == "papel" and computadora == "piedra") or \
-         (jugador == "tijera" and computadora == "papel"):
+    elif (jugador == "piedra" and ordenador == "tijera") or \
+         (jugador == "papel" and ordenador == "piedra") or \
+         (jugador == "tijera" and ordenador == "papel"):
         print("¡Ganaste!")
     else:
         print("Perdiste. Intenta de nuevo.")
