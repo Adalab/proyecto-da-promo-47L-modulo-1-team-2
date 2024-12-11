@@ -161,3 +161,32 @@ while intentos_fallidos < len(dibujo_horca) - 1:
 else:
     print("¡Perdiste! La palabra era:", palabra)
 
+
+#Juego Piedra Papel Tijera
+
+import random
+
+def jugar():
+    opciones = ["piedra", "papel", "tijera"]
+
+    jugador = input("Elige piedra, papel o tijera: ").lower()
+    while jugador not in opciones:
+        print("Opción no válida. Intenta de nuevo.")
+        jugador = input("Elige piedra, papel o tijera: ").lower()
+
+    ordenador = random.choice(opciones)
+
+    print(f"Tú elegiste: {jugador}")
+    print(f"La computadora eligió: {computadora}")
+
+    if jugador == computadora:
+        print("¡Es un empate!")
+    elif (jugador == "piedra" and computadora == "tijera") or \
+         (jugador == "papel" and computadora == "piedra") or \
+         (jugador == "tijera" and computadora == "papel"):
+        print("¡Ganaste!")
+    else:
+        print("Perdiste. Intenta de nuevo.")
+
+# Llamar a la función para jugar esto nos lo explicaran mañana
+jugar()
