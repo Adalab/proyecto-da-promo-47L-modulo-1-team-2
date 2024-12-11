@@ -57,12 +57,13 @@ while indice < len(capitales):
 print(f"Juego terminado. Obtuviste {puntos} puntos.")
 
 
+--------------------------------------------------------
+
 
 #Juego del ahorcado
 
 import random
 
-# Lista de palabras y dibujo de la horca
 lista_palabras = ["perro", "alcachofa", "ratón", "jarra", "anillo"]
 dibujo_horca = [
     """
@@ -130,6 +131,7 @@ dibujo_horca = [
     """
 ]
 
+
 # Selección de palabra y configuración inicial
 palabra = random.choice(lista_palabras)
 tablero = ["_"] * len(palabra)
@@ -161,6 +163,10 @@ while intentos_fallidos < len(dibujo_horca) - 1:
 else:
     print("¡Perdiste! La palabra era:", palabra)
 
+
+
+
+--------------------------------------------------------
 
 #Juego Piedra Papel Tijera
 
