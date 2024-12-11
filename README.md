@@ -24,37 +24,45 @@ Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones cr
 
 ```python
 
-#Juego Adivina Capitales Europeas
+# Juego Adivina Capitales Europeas
 
 capitales = [
     ("Rusia", "Moscú"),
-    ( "Italia", "Roma"),
+    ("Italia", "Roma"),
     ("España", "Madrid"),
-    ( "Lituania", "Vilna"),
+    ("Lituania", "Vilna"),
     ("Rumania", "Bucarest")
 ]
 
 puntos = 0
 indice = 0
 
+print("¡Bienvenida al juego: Adivina Capitales Europeas!")
+print("Para finalizar el juego escribe: salir")
 
-while indice < len(capitales):
+
+while True:
     pais, capital = capitales[indice]
     print(f"¿Cuál es la capital de {pais}?")
-    
     respuesta = input("Tu respuesta (o escribe 'salir' para terminar): ")
     
     if respuesta.lower() == "salir":
         print("Saliste del juego.")
+        print(f"Juego terminado. Obtuviste {puntos} puntos.")
         break
-    if respuesta.lower() == capital.lower():
+    
+    if respuesta.lower() == capital.loºwer():
         print("¡Correcto!")
         puntos += 1
     else:
         print(f"Incorrecto, la respuesta correcta es: {capital}")
-    indice += 1
     
-print(f"Juego terminado. Obtuviste {puntos} puntos.")
+    indice += 1
+    if indice >= len(capitales):
+        print("Has terminado todas las preguntas.")
+        print(f"Juego terminado. Obtuviste {puntos} puntos.")
+        break
+
 
 
 --------------------------------------------------------
