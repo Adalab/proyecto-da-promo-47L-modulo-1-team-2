@@ -24,21 +24,21 @@ ahorcado.ipynb: Implementación del juego del Ahorcado.
 preguntas y respuestas.ipynb: Implementación del juego de preguntas y respuestas basado en las capitales europeas.
 Cada juego se ejecuta en la terminal y ofrece una interfaz sencilla para que los jugadores puedan disfrutar de la experiencia.
 
-# Preguntas y Respuestas
+# Preguntas y Respuestas![preguntas](juego-de-preguntas-y-respuestas.jpg)
 
 Ejecuta el archivo: preguntas y respuestas.ipynb.
 El juego te hará una serie de preguntas sobre las capitales de países europeos.
 Tendrás varias opciones para cada pregunta, y solo una respuesta será correcta.
 Al final del juego, recibirás un puntaje basado en las respuestas correctas.
 
-# Piedra Papel & Tijera
+# Piedra Papel & Tijera![Piedra,papel,tijera](image.png)
 
 Ejecuta el archivo: piedra_papel_tijera.ipynb.
 El juego te pedirá que elijas entre "Piedra", "Papel" o "Tijera".
 Después, la computadora hará su elección y te mostrará el resultado (quién ganó o si hubo empate).
 El juego continuará pidiendo nuevas elecciones hasta que decidas terminar.
 
-# Ahorcado
+# Ahorcado![ahorcado](ionic-3-ahorcado.png)
 
 Ejecuta el archivo: ahorcado.ipynb.
 Se seleccionará una palabra aleatoria y tendrás que adivinarla, letra por letra.
