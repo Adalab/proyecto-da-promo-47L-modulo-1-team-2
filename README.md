@@ -51,7 +51,7 @@ El objetivo es adivinar la palabra antes de que el muñeco sea completado.
 Este proyecto es una forma entretenida de disfrutar de varios juegos clásicos mientras se practica programación en Python. Cada uno de los juegos, ya sea el tradicional Piedra, Papel o Tijera, el desafiante Ahorcado, o el educativo juego de Preguntas y Respuestas sobre capitales europeas, ofrece una experiencia interactiva y fácil de jugar en la terminal. Además, es una excelente base para que los desarrolladores novatos practiquen y amplíen sus habilidades en programación, añadiendo nuevas funcionalidades o mejorando la interfaz. ¡Espero que disfruten del proyecto y encuentren oportunidades para aprender y mejorar!
 
 ## **Sobre nuestro grupo**
-Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones creativas en programación. Este repositorio es un espacio colaborativo donde plasmaremos nuestras ideas y avanzaremos juntas hacia el éxito.</font>  
+Somos un equipo comprometido con el aprendizaje y el desarrollo de soluciones creativas en programación. Este repositorio es un espacio colaborativo donde hemos plasmado nuestras ideas y avanzamos juntas hacia el éxito.</font>  
 
 >**"El talento gana juegos, pero el trabajo en equipo y la inteligencia ganan campeonatos." – Michael Jordan**
 
