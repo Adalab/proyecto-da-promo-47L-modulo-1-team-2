@@ -1,0 +1,223 @@
+import pygame
+import random
+import sys
+
+# Inicialización de Pygame
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Juegos Integrados")
+font = pygame.font.Font(None, 36)
+clock = pygame.time.Clock()
+
+# Colores
+background_color = (20, 20, 50)
+text_color = (255, 255, 255)
+highlight_color = (255, 255, 0)
+input_color = (0, 200, 255)
+correct_color = (0, 255, 0)
+wrong_color = (255, 0, 0)
+
+# Cargar imágenes
+background_image = pygame.image.load("background.jpg")
+icon_image = pygame.image.load("icon.jpg")
+icon_image = pygame.transform.scale(icon_image, (100, 100))
+
+# Función para renderizar texto
+def render_text(text, pos, color=(255, 255, 255), size=36, center=False):
+    font = pygame.font.Font(None, size)
+    rendered = font.render(text, True, color)
+    if center:
+        rect = rendered.get_rect(center=pos)
+        screen.blit(rendered, rect)
+    else:
+        screen.blit(rendered, pos)
+
+# Pantalla de puntuación final entre juegos
+def mostrar_puntuacion(titulo, puntos):
+    running = True
+    while running:
+        screen.blit(background_image, (0, 0))
+        screen.blit(icon_image, (650, 20))
+
+        render_text(titulo, (400, 200), highlight_color, size=48, center=True)
+        render_text(f"Puntuación total: {puntos}", (400, 300), correct_color, size=36, center=True)
+        render_text("Presiona Enter para continuar", (400, 400), input_color, size=24, center=True)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                running = False
+
+        pygame.display.flip()
+        clock.tick(30)
+
+# Juego 1: Preguntas y Respuestas
+def juego_preguntas():
+    capitales = {
+        "Rusia": "Moscú",
+        "Italia": "Roma",
+        "España": "Madrid",
+        "Lituania": "Vilna",
+        "Rumania": "Bucarest"
+    }
+    paises = list(capitales.keys())
+    indice = 0
+    puntos = 0
+    respuesta = ""
+    mensaje = ""
+
+    running = True
+    while running:
+        screen.blit(background_image, (0, 0))
+        screen.blit(icon_image, (650, 20))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    if indice < len(paises):
+                        if respuesta.lower() == capitales[paises[indice]].lower():
+                            mensaje = "¡Correcto!"
+                            puntos += 1
+                        else:
+                            mensaje = f"Incorrecto. Era: {capitales[paises[indice]]}"
+                        indice += 1
+                        respuesta = ""
+                        if indice >= len(paises):
+                            running = False
+                elif event.key == pygame.K_BACKSPACE:
+                    respuesta = respuesta[:-1]
+                else:
+                    respuesta += event.unicode
+
+        if indice < len(paises):
+            render_text(f"¿Cuál es la capital de {paises[indice]}?", (400, 50), highlight_color, center=True)
+        else:
+            render_text(f"Juego terminado. Puntos totales: {puntos}", (400, 50), highlight_color, size=48, center=True)
+
+        render_text(f"Tu respuesta: {respuesta}", (400, 400), input_color, center=True)
+        render_text(mensaje, (400, 500), correct_color if "¡Correcto!" in mensaje else wrong_color, center=True)
+        pygame.display.flip()
+        clock.tick(30)
+
+    mostrar_puntuacion("Fin del juego 1", puntos)
+    return puntos
+
+# Juego 2: Ahorcado
+def juego_ahorcado():
+    lista_palabras = ["perro", "alcachofa", "ratón", "jarra", "anillo"]
+    dibujo_horca = [
+        "  ------\n  |    |\n       |\n       |\n       |\n       |\n=========",
+        "  ------\n  |    |\n  O    |\n       |\n       |\n       |\n=========",
+        "  ------\n  |    |\n  O    |\n  |    |\n       |\n       |\n=========",
+        "  ------\n  |    |\n  O    |\n /|    |\n       |\n       |\n=========",
+        "  ------\n  |    |\n  O    |\n /|\\   |\n       |\n       |\n=========",
+        "  ------\n  |    |\n  O    |\n /|\\   |\n /     |\n       |\n=========",
+        "  ------\n  |    |\n  O    |\n /|\\   |\n / \\   |\n       |\n========="
+    ]
+
+    palabra = random.choice(lista_palabras)
+    tablero = ["_"] * len(palabra)
+    intentos_fallidos = 0
+    puntos = 0
+    mensaje = ""
+
+    running = True
+    while running:
+        screen.blit(background_image, (0, 0))
+        screen.blit(icon_image, (650, 20))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                letra = event.unicode.lower()
+                if len(letra) == 1 and letra.isalpha():
+                    if letra in palabra:
+                        for i, l in enumerate(palabra):
+                            if l == letra:
+                                tablero[i] = letra
+                        mensaje = "¡Correcto!"
+                        puntos += 1
+                    else:
+                        intentos_fallidos += 1
+                        mensaje = "¡Fallaste!"
+                    if "_" not in tablero or intentos_fallidos == len(dibujo_horca) - 1:
+                        running = False
+
+        render_text(f"Palabra: {' '.join(tablero)}", (400, 100), input_color, center=True)
+        for i, linea in enumerate(dibujo_horca[intentos_fallidos].split("\n")):
+            render_text(linea, (400, 200 + i * 20), text_color, center=True)
+        render_text(mensaje, (400, 450), correct_color if "¡Correcto!" in mensaje else wrong_color, center=True)
+        pygame.display.flip()
+        clock.tick(30)
+
+    mostrar_puntuacion("Fin del juego 2", puntos)
+    return puntos
+
+# Juego 3: Piedra, Papel o Tijera
+def juego_piedra_papel_tijera():
+    elecciones = ["piedra", "papel", "tijera"]
+    rondas = 3
+    usuario_puntos = 0
+    ordenador_puntos = 0
+    mensaje = ""
+    entrada_usuario = ""
+
+    running = True
+    while running:
+        screen.blit(background_image, (0, 0))
+        screen.blit(icon_image, (650, 20))
+
+        render_text(f"Rondas restantes: {rondas}", (400, 50), highlight_color, center=True)
+        render_text(f"Usuario: {usuario_puntos} | Ordenador: {ordenador_puntos}", (400, 100), text_color, center=True)
+        render_text(mensaje, (400, 300), input_color, center=True)
+        render_text(f"Tu elección: {entrada_usuario}", (400, 400), input_color, center=True)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN and entrada_usuario in elecciones:
+                    ordenador = random.choice(elecciones)
+                    if entrada_usuario == ordenador:
+                        mensaje = f"Empate: Ambos eligieron {entrada_usuario}"
+                    elif (entrada_usuario == "piedra" and ordenador == "tijera") or \
+                         (entrada_usuario == "papel" and ordenador == "piedra") or \
+                         (entrada_usuario == "tijera" and ordenador == "papel"):
+                        mensaje = f"Ganaste: {entrada_usuario} vence a {ordenador}"
+                        usuario_puntos += 1
+                    else:
+                        mensaje = f"Perdiste: {ordenador} vence a {entrada_usuario}"
+                        ordenador_puntos += 1
+                    entrada_usuario = ""
+                    rondas -= 1
+                    if rondas == 0:
+                        running = False
+                elif event.key == pygame.K_BACKSPACE:
+                    entrada_usuario = entrada_usuario[:-1]
+                else:
+                    entrada_usuario += event.unicode.lower()
+
+        pygame.display.flip()
+        clock.tick(30)
+
+    mostrar_puntuacion("Fin del juego 3", usuario_puntos)
+    return usuario_puntos
+
+# Ejecución de los juegos en secuencia
+puntos_totales = 0
+puntos_totales += juego_preguntas()
+puntos_totales += juego_ahorcado()
+puntos_totales += juego_piedra_papel_tijera()
+
+mostrar_puntuacion("Resultado final", puntos_totales)
+
+pygame.quit()
+sys.exit()
